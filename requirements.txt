@@ -2,3 +2,6 @@ Flask
 Flask-MySQLdb
 gunicorn
 Werkzeug
+razorpay==2.0.1
+bcrypt
+requests
