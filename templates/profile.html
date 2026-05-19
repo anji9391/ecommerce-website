@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <h1>
+        My Profile
+    </h1>
+
+    <div class="profile-card">
+
+        <h2>
+            Username:
+            {{ user[0] }}
+        </h2>
+
+        <h3>
+            Email:
+            {{ user[1] }}
+        </h3>
+
+        <h3>
+            Total Orders:
+            {{ total_orders }}
+        </h3>
+
+        <a href="/logout">
+
+            <button class="logout-btn">
+                Logout
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

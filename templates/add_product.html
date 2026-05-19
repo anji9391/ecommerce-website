@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>
+    Add Product
+</h1>
+
+<form
+method="POST"
+enctype="multipart/form-data">
+
+    <input
+    type="text"
+    name="name"
+    placeholder="Product Name"
+    required>
+
+    <br><br>
+
+    <textarea
+    name="description"
+    placeholder="Description"
+    required></textarea>
+
+    <br><br>
+
+    <input
+    type="number"
+    name="price"
+    placeholder="Price"
+    required>
+
+    <br><br>
+
+    <select
+    name="category"
+    required>
+
+        <option value="">
+            Select Category
+        </option>
+
+        <option value="Laptop">
+            Laptop
+        </option>
+
+        <option value="Mobile">
+            Mobile
+        </option>
+
+        <option value="Accessories">
+            Accessories
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <input
+    type="file"
+    name="image"
+    required>
+
+    <br><br>
+
+    <button type="submit">
+        Add Product
+    </button>
+
+</form>
+
+{% endblock %}

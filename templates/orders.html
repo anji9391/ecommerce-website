@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>My Orders</h1>
+
+{% for order in orders %}
+
+<div class="cart-card">
+
+    <h2>
+        Order #{{ order[0] }}
+    </h2>
+
+    <h3>
+        ₹{{ order[2] }}
+    </h3>
+
+    <p>
+        {{ order[4] }}
+    </p>
+
+    <p>
+        {{ order[5] }}
+    </p>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

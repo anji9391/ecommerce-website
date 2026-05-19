@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="heading">
+    All Products
+</h1>
+
+<div class="product-container">
+
+{% for product in products %}
+
+<div class="product-card">
+
+    <a href="/product/{{ product[0] }}">
+
+        <img
+        src="{{ url_for(
+        'static',
+        filename='uploads/' + product[4]
+        ) }}"
+        alt="product">
+
+    </a>
+
+    <a
+    href="/product/{{ product[0] }}"
+    style="
+    text-decoration:none;
+    color:black;">
+
+        <h2>
+            {{ product[1] }}
+        </h2>
+
+    </a>
+
+    <p>
+        {{ product[2] }}
+    </p>
+
+    <h3>
+        ₹{{ product[3] }}
+    </h3>
+
+    <a href="/add-to-cart/{{ product[0] }}">
+
+        <button class="cart-btn">
+            Add To Cart
+        </button>
+
+    </a>
+
+    <a href="/add-to-wishlist/{{ product[0] }}">
+
+        <button class="wishlist-btn">
+            ❤️ Wishlist
+        </button>
+
+    </a>
+
+    <a href="/product/{{ product[0] }}">
+
+        <button class="details-btn">
+            View Details
+        </button>
+
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

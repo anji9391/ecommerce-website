@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>
+    Checkout
+</h1>
+
+<form
+method="POST"
+id="checkout-form">
+
+    <textarea
+    name="address"
+    placeholder="Enter Full Address"
+    required
+    rows="5"
+    cols="50"></textarea>
+
+    <br><br>
+
+    <h2>
+        Total:
+        ₹{{ total }}
+    </h2>
+
+    <label>
+        Payment Method
+    </label>
+
+    <br><br>
+
+    <select
+    name="payment_method"
+    id="payment_method"
+    required>
+
+        <option value="">
+            Select Payment
+        </option>
+
+        <option value="COD">
+            Cash On Delivery
+        </option>
+
+        <option value="UPI">
+            UPI
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <button
+    type="submit">
+
+        Place Order
+
+    </button>
+
+</form>
+
+<script src=
+"https://checkout.razorpay.com/v1/checkout.js">
+</script>
+
+<script>
+
+document
+.getElementById(
+'checkout-form'
+)
+.addEventListener(
+'submit',
+function(e){
+
+    const paymentMethod =
+    document
+    .getElementById(
+    'payment_method'
+    ).value;
+
+    if(
+        paymentMethod
+        === 'UPI'
+    ){
+
+        e.preventDefault();
+
+        var options = {
+
+            "key":
+            "{{ razorpay_key }}",
+
+            "amount":
+            "{{ payment.amount }}",
+
+            "currency":
+            "INR",
+
+            "name":
+            "MyStore",
+
+            "description":
+            "Order Payment",
+
+            "order_id":
+            "{{ payment.id }}",
+
+            "handler":
+            function(response){
+
+                let form =
+                document
+                .getElementById(
+                'checkout-form'
+                );
+
+                let input =
+                document
+                .createElement(
+                'input'
+                );
+
+                input.type =
+                'hidden';
+
+                input.name =
+                'payment_status';
+
+                input.value =
+                'Paid';
+
+                form.appendChild(
+                    input
+                );
+
+                form.submit();
+            },
+
+            "theme": {
+                "color":
+                "#3399cc"
+            }
+        };
+
+        var rzp1 =
+        new Razorpay(
+            options
+        );
+
+        rzp1.open();
+    }
+
+});
+</script>
+
+{% endblock %}

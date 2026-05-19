@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="cart-heading">
+    Shopping Cart
+</h1>
+
+{% if cart_items %}
+
+<div class="cart-container">
+
+{% for item in cart_items %}
+
+<div class="cart-card">
+
+    <div class="cart-info">
+
+        <h2>{{ item[1] }}</h2>
+
+        <h3>₹{{ item[2] }}</h3>
+
+        <p>
+            Quantity:
+            {{ item[3] }}
+        </p>
+
+    </div>
+
+    <div class="cart-actions">
+
+        <a href="/increase-quantity/{{ item[0] }}">
+            <button class="plus-btn">
+                +
+            </button>
+        </a>
+
+        <a href="/decrease-quantity/{{ item[0] }}">
+            <button class="minus-btn">
+                -
+            </button>
+        </a>
+
+        <a href="/remove-item/{{ item[0] }}">
+            <button class="remove-btn">
+                Remove
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+<div class="total-box">
+
+    <h2>
+        Total:
+        ₹{{ total }}
+    </h2>
+
+    <a href="/checkout">
+        <button class="checkout-btn">
+            Proceed To Checkout
+        </button>
+    </a>
+
+</div>
+
+</div>
+
+{% else %}
+
+<h2>
+    Cart Empty
+</h2>
+
+{% endif %}
+
+{% endblock %}

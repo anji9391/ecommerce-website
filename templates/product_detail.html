@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="product-detail">
+
+    <div class="left">
+
+        <img
+        src="{{ url_for(
+        'static',
+        filename='uploads/' + product[4]
+        ) }}"
+        alt="product"
+        class="detail-image">
+
+    </div>
+
+    <div class="right">
+
+        <h1>
+            {{ product[1] }}
+        </h1>
+
+        <p>
+            {{ product[2] }}
+        </p>
+
+        <h2>
+            ₹{{ product[3] }}
+        </h2>
+
+        <a href="/add-to-cart/{{ product[0] }}">
+
+            <button class="cart-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+        <a href="/add-to-wishlist/{{ product[0] }}">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<hr>
+
+<h2>
+Add Review
+</h2>
+
+<form
+method="POST"
+action="/add-review/{{ product[0] }}">
+
+    <select
+    name="rating"
+    required>
+
+        <option value="">
+            Select Rating
+        </option>
+
+        <option value="1">
+            1 Star
+        </option>
+
+        <option value="2">
+            2 Stars
+        </option>
+
+        <option value="3">
+            3 Stars
+        </option>
+
+        <option value="4">
+            4 Stars
+        </option>
+
+        <option value="5">
+            5 Stars
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <textarea
+    name="comment"
+    placeholder="Write review"
+    required></textarea>
+
+    <br><br>
+
+    <button type="submit">
+        Submit Review
+    </button>
+
+</form>
+
+<hr>
+
+<h2>
+Customer Reviews ⭐
+</h2>
+
+{% for review in reviews %}
+
+<div class="card">
+
+    <h3>
+        {{ review[2] }}
+    </h3>
+
+    <p>
+        ⭐ {{ review[0] }}/5
+    </p>
+
+    <p>
+        {{ review[1] }}
+    </p>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

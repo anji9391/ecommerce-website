@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MyStore</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for(
+    'static',
+    filename='css/style.css'
+    ) }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        MyStore
+    </div>
+
+    <!-- Sort -->
+    <form action="/" method="GET">
+
+        <select
+        name="sort"
+        onchange="this.form.submit()">
+
+            <option value="">
+                Sort Price
+            </option>
+
+            <option value="low">
+                Low to High
+            </option>
+
+            <option value="high">
+                High to Low
+            </option>
+
+        </select>
+
+    </form>
+
+    <!-- Category -->
+    <form action="/" method="GET">
+
+        <select
+        name="category"
+        onchange="this.form.submit()">
+
+            <option value="">
+                Category
+            </option>
+
+            <option value="Laptop">
+                Laptop
+            </option>
+
+            <option value="Mobile">
+                Mobile
+            </option>
+
+            <option value="Accessories">
+                Accessories
+            </option>
+
+        </select>
+
+    </form>
+
+    <!-- Search -->
+    <form
+    action="/"
+    method="GET"
+    class="search-form">
+
+        <input
+        type="text"
+        name="search"
+        placeholder="Search products">
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="/">Home</a>
+        </li>
+
+        <li>
+            <a href="/products">
+                Products
+            </a>
+        </li>
+
+        {% if session.get('user_id') %}
+
+        <li>
+    <a href="/profile">
+        Hello {{ session.username }}
+    </a>
+</li>
+
+        <li>
+            <a href="/logout">
+                Logout
+            </a>
+        </li>
+
+        {% else %}
+
+        <li>
+            <a href="/login">
+                Login
+            </a>
+        </li>
+
+        <li>
+            <a href="/signup">
+                Signup
+            </a>
+        </li>
+
+        {% endif %}
+
+        <li>
+            <a href="/cart">
+                Cart
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<div class="main-content">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+</body>
+</html>

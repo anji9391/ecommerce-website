@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Admin Dashboard</h1>
+
+<a href="/admin/add-product">
+    <button>
+        Add Product
+    </button>
+</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Action</th>
+</tr>
+
+{% for product in products %}
+
+<tr>
+
+<td>{{ product[0] }}</td>
+<td>{{ product[1] }}</td>
+<td>₹{{ product[3] }}</td>
+
+<td>
+    <a href="/admin/delete-product/{{ product[0] }}">
+        Delete
+    </a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
